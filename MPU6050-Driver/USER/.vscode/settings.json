@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.m": "matlab",
+        "led.h": "c",
+        "mpuiic.h": "c"
+    }
+}
