@@ -3,17 +3,17 @@
         {
             "name": "0.96OLED",
             "includePath": [
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\电磁炮\\0.96OLED-IIC-Driver\\CORE",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\电磁炮\\0.96OLED-IIC-Driver\\USER",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\电磁炮\\0.96OLED-IIC-Driver\\STM32F10x_FWLib\\inc",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\电磁炮\\0.96OLED-IIC-Driver\\SYSTEM\\delay",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\电磁炮\\0.96OLED-IIC-Driver\\SYSTEM\\sys",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\电磁炮\\0.96OLED-IIC-Driver\\SYSTEM\\usart",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\电磁炮\\0.96OLED-IIC-Driver\\HARDWARE\\LED",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\电磁炮\\0.96OLED-IIC-Driver\\HARDWARE\\OLED",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\0.96OLED-IIC-Driver\\CORE",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\0.96OLED-IIC-Driver\\USER",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\0.96OLED-IIC-Driver\\STM32F10x_FWLib\\inc",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\0.96OLED-IIC-Driver\\SYSTEM\\delay",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\0.96OLED-IIC-Driver\\SYSTEM\\sys",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\0.96OLED-IIC-Driver\\SYSTEM\\usart",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\0.96OLED-IIC-Driver\\HARDWARE\\LED",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\0.96OLED-IIC-Driver\\HARDWARE\\OLED",
                 "D:\\KeilMDK5\\ARM\\ARMCC\\include",
                 "D:\\KeilMDK5\\ARM\\ARMCC\\include\\rw",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\电磁炮\\0.96OLED-IIC-Driver\\STM32F10x_FWLib\\src"
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\0.96OLED-IIC-Driver\\STM32F10x_FWLib\\src"
             ],
             "defines": [
                 "STM32F10X_HD",
