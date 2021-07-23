@@ -88,7 +88,7 @@ void OLED_WR_Byte(u8 dat,u8 mode)
 	Send_Byte(0x78);
 	I2C_WaitAck();
 	if(mode){Send_Byte(0x40);}
-  else{Send_Byte(0x00);}
+    else{Send_Byte(0x00);}
 	I2C_WaitAck();
 	Send_Byte(dat);
 	I2C_WaitAck();
