@@ -1,9 +1,6 @@
 {
     "files.associations": {
         "*.m": "matlab",
-        "delay.h": "c",
-        "oled.h": "c",
-        "led.h": "c",
-        "oledfont.h": "c"
+        "olediic.h": "c"
     }
 }

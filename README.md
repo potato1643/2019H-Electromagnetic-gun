@@ -10,6 +10,10 @@
 >
 > 1.5	MPU6050-Driver已解决
 >
-> 1.6	MPU6050欧拉角数据实现OLED显示
+> 1.6	MPU6050欧拉角数据实现OLED显示已解决
+>
+> 1.7	PWM-Driver已解决
+>
+> 1.8	Servo-Driver正在解决
 >
 > 
