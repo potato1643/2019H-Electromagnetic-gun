@@ -14,8 +14,11 @@
 >
 > 1.7	PWM-Driver已解决
 >
-> 1.8	Servo-Driver正在解决
+> 1.8	180°Servo-Driver已解决
 >
 > 1.9	BUZZER-Driver已解决
 >
-> 
+> 2.0	2路PWM，Two_Dimensional_PTZ-Driver解决
+>
+> 2.1	-30 —— +30之间精确控制正在解决
+
