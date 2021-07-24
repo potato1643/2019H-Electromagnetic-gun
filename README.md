@@ -24,9 +24,10 @@
 >
 > 2.2	整合MPU6050以及Two_Dimensional_PTZ工程完成
 >
-> 2.3	USART1_2-Driver已解决
+> 2.3	USART1_3-Driver已解决
 >
-> 2.3	键盘输入angle，height正在解决
+> 2.3	USART_HMI-Driver正在解决
 >
-> 2.4	串口屏按键输入正在解决
-
+> 2.4	键盘输入angle，height正在解决;c串口屏实现人机交互
+>
+> 

@@ -14,7 +14,7 @@
 
 ## 底层驱动实现
 
-OLED + MPU6050 + Beep + LED + Two_Dimensional_PTZ + USART1_3
+OLED + MPU6050 + Beep + LED + Two_Dimensional_PTZ + USART1_2
 
 一.接线
 模块共有:Stm32f103C8T6、OLED、MPU6050

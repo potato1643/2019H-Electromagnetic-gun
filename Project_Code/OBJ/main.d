@@ -32,13 +32,13 @@
 ..\obj\main.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\obj\main.o: ..\SYSTEM\delay\delay.h
 ..\obj\main.o: D:\KeilMDK5\ARM\ARMCC\Bin\..\include\stdlib.h
-..\obj\main.o: ..\SYSTEM\usart\usart.h
+..\obj\main.o: ..\SYSTEM\uart\uart.h
 ..\obj\main.o: D:\KeilMDK5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\main.o: ..\HARDWARE\MPU6050\mpu6050.h
 ..\obj\main.o: ..\HARDWARE\MPU6050\mpuiic.h
 ..\obj\main.o: ..\HARDWARE\MPU6050\eMPL\inv_mpu.h
 ..\obj\main.o: ..\HARDWARE\MPU6050\eMPL\inv_mpu_dmp_motion_driver.h
-..\obj\main.o: ..\HARDWARE\UART\uart.h
+..\obj\main.o: ..\HARDWARE\USART\usart.h
 ..\obj\main.o: ..\HARDWARE\LED\led.h
 ..\obj\main.o: ..\HARDWARE\BEEP\beep.h
 ..\obj\main.o: ..\HARDWARE\TIMER\timer.h
