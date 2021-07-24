@@ -37,6 +37,8 @@
 "..\obj\oled.o"
 "..\obj\olediic.o"
 "..\obj\uart.o"
+"..\obj\led.o"
+"..\obj\beep.o"
 --strict --scatter "..\OBJ\Template.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

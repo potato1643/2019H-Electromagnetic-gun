@@ -332,7 +332,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\USER;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE\MPU6050;..\HARDWARE\MPU6050\eMPL;..\HARDWARE\OLED;..\HARDWARE\UART</IncludePath>
+              <IncludePath>..\CORE;..\USER;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE\MPU6050;..\HARDWARE\MPU6050\eMPL;..\HARDWARE\OLED;..\HARDWARE\UART;..\HARDWARE\BEEP;..\HARDWARE\LED</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -584,6 +584,16 @@
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\UART\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\LED\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>beep.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\BEEP\beep.c</FilePath>
             </File>
           </Files>
         </Group>
