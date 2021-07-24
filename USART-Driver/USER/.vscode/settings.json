@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.m": "matlab",
+        "olediic.h": "c",
+        "beep.h": "c",
+        "usart.h": "c"
+    }
+}

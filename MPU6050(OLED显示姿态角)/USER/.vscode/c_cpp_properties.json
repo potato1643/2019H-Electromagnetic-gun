@@ -3,19 +3,19 @@
         {
             "name": "MPU6050",
             "includePath": [
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\MPU6050(OLED显示姿态角)\\CORE",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\MPU6050(OLED显示姿态角)\\USER",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\MPU6050(OLED显示姿态角)\\STM32F10x_FWLib\\inc",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\MPU6050(OLED显示姿态角)\\SYSTEM\\delay",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\MPU6050(OLED显示姿态角)\\SYSTEM\\sys",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\MPU6050(OLED显示姿态角)\\SYSTEM\\usart",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\MPU6050(OLED显示姿态角)\\HARDWARE\\MPU6050",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\MPU6050(OLED显示姿态角)\\HARDWARE\\MPU6050\\eMPL",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\MPU6050(OLED显示姿态角)\\HARDWARE\\OLED",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\MPU6050(OLED显示姿态角)\\HARDWARE\\UART",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\CORE",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\USER",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\STM32F10x_FWLib\\inc",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\SYSTEM\\delay",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\SYSTEM\\sys",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\SYSTEM\\usart",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\HARDWARE\\MPU6050",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\HARDWARE\\MPU6050\\eMPL",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\HARDWARE\\OLED",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\HARDWARE\\UART",
                 "D:\\KeilMDK5\\ARM\\ARMCC\\include",
                 "D:\\KeilMDK5\\ARM\\ARMCC\\include\\rw",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\MPU6050(OLED显示姿态角)\\STM32F10x_FWLib\\src"
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050(OLED显示姿态角)\\STM32F10x_FWLib\\src"
             ],
             "defines": [
                 "STM32F10X_MD",
