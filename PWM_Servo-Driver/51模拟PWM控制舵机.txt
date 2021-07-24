@@ -1,0 +1,67 @@
+#include <reg52.h>
+#define uint unsigned int
+#define uchar unsigned char
+sbit pwm=P0^0;
+sbit key7=P3^7;
+uchar count=0;
+ 
+ 
+void delayms(uint xms)
+{
+     uint i,j;
+         for(i=xms;i>0;i--)
+         for(j=110;j>0;j--);
+}
+ 
+void Timer0_Init()
+{
+      TMOD=0x01;
+            TH0=(65536-200)/256;
+            TL0=(66636-200)%256;
+            EA=1;
+            ET0=1;
+            TR0=0;
+}
+void Timer0()interrupt 1
+{
+     TH0=(65536-200)/256;
+         TL0=(66636-200)%256;
+          
+         if(count<30)
+            pwm=1;
+         else
+         pwm=0;
+         count++;
+         if(count==100)
+         {
+         TR0=0;
+         count=0;
+         }
+          
+}
+void keyscan()
+{
+    if(key7==0)
+        {
+            delayms(10);
+            if(key7==0)
+            {
+              while(!key7);
+                 
+                TR0=1;
+            }
+        }
+}
+    void main()
+    {
+        Timer0_Init();
+            while(1)
+            {
+             
+            keyscan();
+                  
+                 
+            }
+             
+     
+    }

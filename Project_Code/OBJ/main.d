@@ -41,3 +41,4 @@
 ..\obj\main.o: ..\HARDWARE\UART\uart.h
 ..\obj\main.o: ..\HARDWARE\LED\led.h
 ..\obj\main.o: ..\HARDWARE\BEEP\beep.h
+..\obj\main.o: ..\HARDWARE\TIMER\timer.h

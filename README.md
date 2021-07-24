@@ -20,5 +20,11 @@
 >
 > 2.0	2路PWM，Two_Dimensional_PTZ-Driver解决
 >
-> 2.1	-30 —— +30之间精确控制正在解决
+> 2.1	-30 —— +30之间精确控制已解决
+>
+> 2.2	整合MPU6050以及Two_Dimensional_PTZ工程完成
+>
+> 2.3	键盘输入angle，height正在解决
+>
+> 2.4	串口屏按键输入正在解决
 
