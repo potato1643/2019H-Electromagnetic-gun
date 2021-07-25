@@ -26,8 +26,10 @@
 >
 > 2.3	USART1_3-Driver已解决
 >
-> 2.3	USART_HMI-Driver正在解决
+> 2.3	USART_HMI-Driver中的STM32向HMI发送数据已解决
 >
-> 2.4	键盘输入angle，height正在解决;c串口屏实现人机交互
+> 2.4	HMI向STM32发送数据
+>
+> 2.4	键盘输入angle，height正在解决;串口屏实现人机交互
 >
 > 

@@ -8,8 +8,8 @@
 #define OLED_SCL_Clr() GPIO_ResetBits(GPIOA,GPIO_Pin_1)//SCL
 #define OLED_SCL_Set() GPIO_SetBits(GPIOA,GPIO_Pin_1)
 
-#define OLED_SDA_Clr() GPIO_ResetBits(GPIOA,GPIO_Pin_3)//AIN
-#define OLED_SDA_Set() GPIO_SetBits(GPIOA,GPIO_Pin_3)
+#define OLED_SDA_Clr() GPIO_ResetBits(GPIOC,GPIO_Pin_3)//AIN
+#define OLED_SDA_Set() GPIO_SetBits(GPIOC,GPIO_Pin_3)
 
 void IIC_delay(void);
 void I2C_Start(void);

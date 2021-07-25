@@ -11,11 +11,20 @@ void OLED_Init(void)
 {
 	GPIO_InitTypeDef  GPIO_InitStructure;
  	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);	  //使能A端口时钟
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3|GPIO_Pin_1;	  //PA1->IIC_SCL  PA3->IIC_SDA
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);	  //使能A端口时钟
+
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;	  //PA1->IIC_SCL  PC3->IIC_SDA
  	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD; 		    //推挽输出
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;       //速度50MHz
- 	GPIO_Init(GPIOA, &GPIO_InitStructure);	                //初始化PA1,PA2
- 	GPIO_SetBits(GPIOA,GPIO_Pin_1|GPIO_Pin_3);              //PA1,PA3置高
+ 	GPIO_Init(GPIOA, &GPIO_InitStructure);	                //初始化PA1
+ 	GPIO_SetBits(GPIOA,GPIO_Pin_1);              //PA1置高
+
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;	  //PA1->IIC_SCL  PC3->IIC_SDA
+ 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD; 		    //推挽输出
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;       //速度50MHz
+ 	GPIO_Init(GPIOC, &GPIO_InitStructure);	                //初始化PA1
+ 	GPIO_SetBits(GPIOC,GPIO_Pin_3);              //PC3置高
+	
 
 	OLED_WR_Byte(0xAE,OLED_CMD);//---关闭OLED面板
 	OLED_WR_Byte(0x00,OLED_CMD);//---设置列低地址

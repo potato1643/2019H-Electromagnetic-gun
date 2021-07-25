@@ -33,8 +33,8 @@ void HMISendString(char *buf1)		  //字符串发送函数
 	{
 	if(buf1[i]!=0)
 	 	{
-			USART_SendData(USART1,buf1[i]);  //发送一个字节
-			while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==RESET){};//等待发送结束
+			USART_SendData(USART2,buf1[i]);  //发送一个字节
+			while(USART_GetFlagStatus(USART2,USART_FLAG_TXE)==RESET){};//等待发送结束
 		 	i++;
 		}
 	else 
@@ -50,8 +50,8 @@ void HMISendb(u8 k)		         //字节发送函数
 	{
 	if(k!=0)
 	 	{
-			USART_SendData(USART1,k);  //发送一个字节
-			while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==RESET){};//等待发送结束
+			USART_SendData(USART2,k);  //发送一个字节
+			while(USART_GetFlagStatus(USART2,USART_FLAG_TXE)==RESET){};//等待发送结束
 		}
 	else 
 	return ;
