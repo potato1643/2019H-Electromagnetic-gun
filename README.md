@@ -28,8 +28,20 @@
 >
 > 2.3	USART_HMI-Driver中的STM32向HMI发送数据已解决
 >
-> 2.4	HMI向STM32发送数据
+> 2.4	HMI向STM32发送数据已解决
 >
-> 2.4	键盘输入angle，height正在解决;串口屏实现人机交互
+> 2.4	键盘输入angle，distancet已解决；
+>
+> 2.5	roll与distance的关系已解决
+>
+> 2.6	HMI屏幕制作(利用现成项目完成改造)已解决
+>
+> 2.7	通过HMI串口屏实现人机交互已解决
+>
+> 2.8	Button-Driver已解决
+>
+> 2.9	按键-切换模式实现正在解决
+>
+> pid，单环，双环
 >
 > 

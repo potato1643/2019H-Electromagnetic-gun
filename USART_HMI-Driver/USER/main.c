@@ -16,6 +16,7 @@ PA2:LED0
 #include "beep.h"
 #include "timer.h"
 #include "hmi.h"
+#include "key.h"
 
 
 //USART_DEBUG ———— USART1
@@ -26,21 +27,30 @@ int main(void)
 	short aacx,aacy,aacz;		  //加速度传感器原始数据
 	short gyrox,gyroy,gyroz;	//陀螺仪原始数据
 	//short temp;								//温度	
-	u16 angle_yaw = 21;
-	u16 angle_roll = 22;
+	u16 angle_yaw;
+	u16 angle_roll;
+	s16 angle;
+	s16 distance;
 	//u16 data = 986;
+	u16 len;
+	//int b;
+	u16 t,i;
+	u8 men[5];
+	vu8 key=0;
 
 	delay_init();				       //延时初始化
 
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); 	 //设置NVIC中断分组2:2位抢占优先级，2位响应优先级
 	//LED_Init();         //LED初始化
 	BEEP_Init();        //BEEP初始化
+	KEY_Init();         //按键初始化
 	OLED_Init();
 	OLED_ColorTurn(0);         //0正常显示，1 反色显示
   	OLED_DisplayTurn(0);       //0正常显示 1 屏幕翻转显示
 	MPU_Init();					       //初始化MPU6050
 	
-	Usart1_Init(115200);		//USART1初始化——USART_DEBUG
+	//Usart1_Init(115200);		//USART1初始化——USART_DEBUG
+	uart_init(115200);
 	Usart2_Init(115200);		//USART2初始化——用于与USART HMI串口屏通信
 
 	
@@ -73,32 +83,6 @@ int main(void)
 	//OLED_ShowString(0,47,"TEMP:",16,1);
 	OLED_Refresh();
 
-	UsartPrintf(USART2, "n1.val=%d\xff\xff\xff");
-
-
-
-		// HMISendString("cls RED");  //发送串口指令
-		// HMISendb(0xff);		  //发送结束符 0XFF 0XFF 0XFF
-		// delay_ms(1000);
-    	// HMISendString("cls GREEN");
-		// HMISendb(0xff);
-    	// delay_ms(1000);
-    	// HMISendString("cls BLUE");
-		// HMISendb(0xff);
-		// delay_ms(1000);
-		 //HMISendString("t0=\"hello\"");
-		 //HMISendb(0xff);
-		// HMISendString("\0xff\0xff\0xff");
-		// delay_ms(1000);
-		// HMISendString("page 4");
-		// HMISendb(0xff);
-		// HMISendString("t0.txt=\"春风不度玉门关\"");
-		// HMISendb(0xff);
-		// HMISendString("xstr 0,0,40,40,0,RED,BLACK,1,1,1,中国");//不建议使用这种指令去显示汉字，建议在上位机上输入你要显示的汉字
-		// HMISendb(0xff);
-	//UsartPrintf(USART_DEBUG, "n1.val=789");
-		//UsartPrintf(USART_DEBUG, "\xff\xff\xff");
-
  	while(1)
 	{
 		
@@ -113,60 +97,146 @@ int main(void)
 			//BEEP = 1;//BEEP关闭
 			//printf("Pitch:  %f\r\n",(float)pitch);
 
-			UsartPrintf(USART2, "Roll:  %f\r\n", (float)roll);
-			UsartPrintf(USART2, "yaw:  %f\r\n", (float)yaw);
+			//UsartPrintf(USART2, "Roll:  %f\r\n", (float)roll);
+			//UsartPrintf(USART2, "yaw:  %f\r\n", (float)yaw);
 			//printf("temp:  %f\r\n",(float)temp);
-			UsartPrintf(USART2, " \r\n");
+			//UsartPrintf(USART2, " \r\n");
 
-			UsartPrintf(USART_DEBUG, "n1.val=234\xff\xff\xff");
-			UsartPrintf(USART_DEBUG, "t0.txt=\"World\"\xff\xff\xff");
+			if(USART_RX_STA&0x8000)
+			{					   
+				len=USART_RX_STA&0x3fff;//得到此次接受数据的长度
+				UsartPrintf(USART2, "\r\n您发送的消息为:\r\n\r\n");
+				for(t = 0; t < len; t++)
+				{
+					men[t] = USART_RX_BUF[t];//向串口一发送数据
+					//USART_SendData(USART1, USART_RX_BUF[t]);//向串口一发送数据
+					while(USART_GetFlagStatus(USART1,USART_FLAG_TC)!=SET);//等待发送结束
+				}
+				for(i = 0; i < len; ++i)
+				{
+					men[i] = men[i] & 0x000f;
+					//UsartPrintf(USART2, "%x",men[i]);
+				}
 
+				// key=KEY_Scan(0);	//得到键值
+				// if(key)
+				// {
+				// 	switch(key)
+				// 	{
+				// 		case KEY0_PRES:	//yaw
+				// 			if(men[0] == 1)
+				// 			angle = 10*men[1] + men[2];
+				// 			else
+				// 			{
+				// 				angle = 10*men[1] + men[2];
+				// 				angle = -angle;
+				// 			}
+				// 			break;
 
-						
+				// 		case KEY1_PRES:   //roll
+				// 			if(men[0] == 1)
+				// 			distance = 100*men[0] + 10*men[1] + men[2];
+				// 			else
+				// 			{
+				// 				distance = 100*men[0] + 10*men[1] + men[2];
+				// 				distance = -distance;
+				// 			}
+				// 			break;
+				// 	}
+				// }
+				if(men[0] == 1)
+				angle = 10*men[1] + men[2];
+				else
+				{
+					angle = 10*men[1] + men[2];
+					angle = -angle;
+				}
 			
+				// if(men[0] == 1)
+				// distance = 100*men[1] + 10*men[2] + men[3];
+				// else
+				// {
+				// 	distance = 100*men[1] + 10*men[2] + men[3];
+				// 	distance = -distance;
+				// }
+
+
+				//UsartPrintf(USART2, "Yaw: %d\r\n", angle);
+				//UsartPrintf(USART2, "Distance: %d\r\n", distance);
+				//b=(USART_RX_BUF[0]);
+				//UsartPrintf(USART2, "Sucess Received!!!!\r\n");
+				//UsartPrintf(USART2, "%d",b);
+				//UsartPrintf(USART2, "\r\n\r\n");
+				USART_RX_STA=0;
+			}
+
+			//UsartPrintf(USART_DEBUG, "n1.val=%d\xff\xff\xff", data);
+			//UsartPrintf(USART_DEBUG, "t0.txt=\"World\"\xff\xff\xff");
+
 			//OLED_ShowFloat(50, 0,pitch,1,16,1);
 			OLED_ShowFloat(50,15,roll,5,16,1);
 			OLED_ShowFloat(50,31,yaw,5,16,1);
 			//OLED_ShowFloat(50,47,(float)temp/100,5,16,1);
 			OLED_Refresh();
 
+			switch (angle)   //90°为中心轴线————16
+			{
+			case 30://1-30(1-正数; 0-负数)    //对应120°
+				angle_yaw = 20;
+				break;
+			case -30://0-30       //对应60°
+				angle_yaw = 13;
+				break;
+			case 15:
+				angle_yaw = 18;
+				break;
+			case -15:
+				angle_yaw = 14;
+				break;
+			default: 
+				angle_yaw = 16;
+				break;
+			}
+
+			switch (distance)		////90°为中心轴线————17; 120cm
+			{
+			case -175://-10°————100
+				angle_roll = 18;
+				break;
+			case -225://-15————105
+				angle_roll = 19;
+				break;
+			case -230://-20————110
+				angle_roll = 20;
+				break;
+			case -295://-30————120
+				angle_roll = 21;
+				break;
+			case -315://-35————125
+				angle_roll = 22;
+				break;
+			case -350://-40————130
+				angle_roll = 23;
+				break;
+			case -325://-45————135
+				angle_roll = 24;
+				break;
+			
+			
+			default:
+				angle_roll = 17;
+				break;
+			}
+			
+			
 			TIM_SetCompare2(TIM3, angle_yaw);
-			TIM_SetCompare1(TIM1, angle_roll);
+			//delay_ms(5000);
+			//TIM_SetCompare1(TIM1, angle_roll);
 
 
-			
-			
 			
 		}
 		
-
-
-		
-		//HMISendstart();          //为确保串口HMI正常通信
-		// HMISendString("cls RED");  //发送串口指令
-		// HMISendb(0xff);		  //发送结束符 0XFF 0XFF 0XFF
-		// delay_ms(1000);
-    	// HMISendString("cls GREEN");
-		// HMISendb(0xff);
-    	// delay_ms(1000);
-    	// HMISendString("cls BLUE");
-		// HMISendb(0xff);
-		// delay_ms(1000);
-		// HMISendString("cls BLACK");
-		// HMISendb(0xff);
-		// delay_ms(1000);
-		// HMISendString("page 4");
-		// HMISendb(0xff);
-		// HMISendString("t0.txt=\"春风不度玉门关\"");
-		// HMISendb(0xff);
-		// HMISendString("xstr 0,0,40,40,0,RED,BLACK,1,1,1,中国");//不建议使用这种指令去显示汉字，建议在上位机上输入你要显示的汉字
-		// HMISendb(0xff);	
-
-
-
-
-
-
 
 
 	} 	

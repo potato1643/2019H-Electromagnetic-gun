@@ -42,3 +42,5 @@
 ..\obj\main.o: ..\HARDWARE\LED\led.h
 ..\obj\main.o: ..\HARDWARE\BEEP\beep.h
 ..\obj\main.o: ..\HARDWARE\TIMER\timer.h
+..\obj\main.o: ..\HARDWARE\HMI\hmi.h
+..\obj\main.o: ..\HARDWARE\KEY\key.h

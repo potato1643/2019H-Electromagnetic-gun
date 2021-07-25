@@ -267,12 +267,12 @@ void UsartPrintf(USART_TypeDef *USARTx, char *fmt,...)
 *	说明：		
 ************************************************************
 */
-void USART1_IRQHandler(void)
-{
+// void USART1_IRQHandler(void)
+// {
 
-	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) //接收中断
-	{
-		USART_ClearFlag(USART1, USART_FLAG_RXNE);
-	}
+// 	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) //接收中断
+// 	{
+// 		USART_ClearFlag(USART1, USART_FLAG_RXNE);
+// 	}
 
-}
+// }
