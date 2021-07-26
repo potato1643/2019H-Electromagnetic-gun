@@ -29,6 +29,8 @@ int main(void)
 	//short temp;								//温度	
 	u16 angle_yaw;
 	u16 angle_roll;
+	//u16 yaw_flag = 0;
+	//u16 roll_flag = 0;
 	s16 angle;
 	s16 distance;
 	//u16 data = 986;
@@ -85,6 +87,19 @@ int main(void)
 
  	while(1)
 	{
+		// key=KEY_Scan(0);	//得到键值
+		// 		if(key)
+		// 		{
+		// 			switch(key)
+		// 			{
+		// 				case KEY0_PRES:	//yaw
+		// 					yaw_flag  = 1;
+		// 					break;
+		// 				case KEY2_PRES:   //roll
+		// 					roll_flag = 1;
+		// 					break;
+		// 			}
+		// 		}
 		
 		if(mpu_dmp_get_data(&pitch,&roll,&yaw)==0)
 		{
@@ -102,6 +117,16 @@ int main(void)
 			//printf("temp:  %f\r\n",(float)temp);
 			//UsartPrintf(USART2, " \r\n");
 
+
+			//UsartPrintf(USART_DEBUG, "n1.val=%d\xff\xff\xff", data);
+			//UsartPrintf(USART_DEBUG, "t0.txt=\"World\"\xff\xff\xff");
+
+			//OLED_ShowFloat(50, 0,pitch,1,16,1);
+			OLED_ShowFloat(50,15,roll,5,16,1);
+			OLED_ShowFloat(50,31,yaw,5,16,1);
+			//OLED_ShowFloat(50,47,(float)temp/100,5,16,1);
+			OLED_Refresh();
+
 			if(USART_RX_STA&0x8000)
 			{					   
 				len=USART_RX_STA&0x3fff;//得到此次接受数据的长度
@@ -118,48 +143,29 @@ int main(void)
 					//UsartPrintf(USART2, "%x",men[i]);
 				}
 
-				// key=KEY_Scan(0);	//得到键值
-				// if(key)
-				// {
-				// 	switch(key)
-				// 	{
-				// 		case KEY0_PRES:	//yaw
-				// 			if(men[0] == 1)
-				// 			angle = 10*men[1] + men[2];
-				// 			else
-				// 			{
-				// 				angle = 10*men[1] + men[2];
-				// 				angle = -angle;
-				// 			}
-				// 			break;
-
-				// 		case KEY1_PRES:   //roll
-				// 			if(men[0] == 1)
-				// 			distance = 100*men[0] + 10*men[1] + men[2];
-				// 			else
-				// 			{
-				// 				distance = 100*men[0] + 10*men[1] + men[2];
-				// 				distance = -distance;
-				// 			}
-				// 			break;
-				// 	}
-				// }
-				if(men[0] == 1)
-				angle = 10*men[1] + men[2];
-				else
+				
+				if(men[0] == 9)
 				{
-					angle = 10*men[1] + men[2];
-					angle = -angle;
+					if(men[1] == 1)
+					angle = 10*men[2] + men[3];
+					else
+					{
+						angle = 10*men[2] + men[3];
+						angle = -angle;
+					}
 				}
 			
-				// if(men[0] == 1)
-				// distance = 100*men[1] + 10*men[2] + men[3];
-				// else
-				// {
-				// 	distance = 100*men[1] + 10*men[2] + men[3];
-				// 	distance = -distance;
-				// }
-
+				if(men[0] == 7)
+				{
+					if(men[1] == 1)
+					distance = 100*men[2] + 10*men[3] + men[4];
+					else
+					{
+						distance = 100*men[2] + 10*men[3] + men[4];
+						distance = -distance;
+					}
+				}
+				
 
 				//UsartPrintf(USART2, "Yaw: %d\r\n", angle);
 				//UsartPrintf(USART2, "Distance: %d\r\n", distance);
@@ -170,14 +176,6 @@ int main(void)
 				USART_RX_STA=0;
 			}
 
-			//UsartPrintf(USART_DEBUG, "n1.val=%d\xff\xff\xff", data);
-			//UsartPrintf(USART_DEBUG, "t0.txt=\"World\"\xff\xff\xff");
-
-			//OLED_ShowFloat(50, 0,pitch,1,16,1);
-			OLED_ShowFloat(50,15,roll,5,16,1);
-			OLED_ShowFloat(50,31,yaw,5,16,1);
-			//OLED_ShowFloat(50,47,(float)temp/100,5,16,1);
-			OLED_Refresh();
 
 			switch (angle)   //90°为中心轴线————16
 			{
@@ -221,8 +219,6 @@ int main(void)
 			case -325://-45————135
 				angle_roll = 24;
 				break;
-			
-			
 			default:
 				angle_roll = 17;
 				break;
@@ -231,7 +227,7 @@ int main(void)
 			
 			TIM_SetCompare2(TIM3, angle_yaw);
 			//delay_ms(5000);
-			//TIM_SetCompare1(TIM1, angle_roll);
+			TIM_SetCompare1(TIM1, angle_roll);
 
 
 			

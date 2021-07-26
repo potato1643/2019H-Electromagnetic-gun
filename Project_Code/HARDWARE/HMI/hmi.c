@@ -4,6 +4,7 @@
 #include "usart.h"	 
 #include "hmi.h"
 
+//没有用上,主要使用uart.c
 
 u8 idfind(u8 *buf,u8 *val,u8 len);
 void HMISendString(char *buf1);
