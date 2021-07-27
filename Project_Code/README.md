@@ -14,7 +14,7 @@
 
 ## 底层驱动实现
 
-OLED + MPU6050 + Beep + LED + Two_Dimensional_PTZ + USART1_3 + HMI + Button（舍弃了，直接用串口屏实现）
+OLED + MPU6050 + Beep + LED + Two_Dimensional_PTZ + USART1_3 + HMI + Button（舍弃了，直接用串口屏实现）+ 180°Servo 精确控制 + USART2/USART3端口重映射 + PWM端口更改
 
 一.接线
 模块共有:Stm32f103C8T6、OLED、MPU6050

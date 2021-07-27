@@ -3,6 +3,8 @@
         "*.m": "matlab",
         "olediic.h": "c",
         "beep.h": "c",
-        "usart.h": "c"
+        "usart.h": "c",
+        "stm32f10x_usart.h": "c",
+        "uart.h": "c"
     }
 }

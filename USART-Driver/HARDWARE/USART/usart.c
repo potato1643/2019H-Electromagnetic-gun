@@ -137,7 +137,8 @@ void Usart2_Init(unsigned int baud)
 	NVIC_Init(&nvicInitStruct);
 
 }
-
+   
+  
 /*
 ************************************************************
 *	º¯ÊýÃû³Æ£º	Usart_SendString

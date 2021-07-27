@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "*.m": "matlab",
+        "olediic.h": "c",
+        "beep.h": "c",
+        "usart.h": "c",
+        "uart.h": "c",
+        "led.h": "c",
+        "mpuiic.h": "c",
+        "delay.h": "c"
+    }
+}
