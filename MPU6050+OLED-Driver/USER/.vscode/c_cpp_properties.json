@@ -96,20 +96,20 @@
         {
             "name": "Electromagnetic-gun",
             "includePath": [
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\Project_Code\\CORE",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\Project_Code\\USER",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\Project_Code\\STM32F10x_FWLib\\inc",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\Project_Code\\SYSTEM\\delay",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\Project_Code\\SYSTEM\\sys",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\Project_Code\\SYSTEM\\usart",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\Project_Code\\HARDWARE\\LED",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\Project_Code\\HARDWARE\\OLED",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\Project_Code\\HARDWARE\\MPU6050\\eMPL",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\Project_Code\\HARDWARE\\MPU6050",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\Project_Code\\USMART",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050+OLED-Driver\\CORE",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050+OLED-Driver\\USER",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050+OLED-Driver\\STM32F10x_FWLib\\inc",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050+OLED-Driver\\SYSTEM\\delay",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050+OLED-Driver\\SYSTEM\\sys",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050+OLED-Driver\\SYSTEM\\usart",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050+OLED-Driver\\HARDWARE\\LED",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050+OLED-Driver\\HARDWARE\\OLED",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050+OLED-Driver\\HARDWARE\\MPU6050\\eMPL",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050+OLED-Driver\\HARDWARE\\MPU6050",
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050+OLED-Driver\\USMART",
                 "D:\\KeilMDK5\\ARM\\ARMCC\\include",
                 "D:\\KeilMDK5\\ARM\\ARMCC\\include\\rw",
-                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\Project_Code\\STM32F10x_FWLib\\src"
+                "f:\\电子设计竞赛\\21-8-4国赛\\训练项目\\code\\dcp\\MPU6050+OLED-Driver\\STM32F10x_FWLib\\src"
             ],
             "defines": [
                 "STM32F10X_HD",

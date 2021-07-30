@@ -17,6 +17,8 @@ PA2:LED0
 #include "timer.h"
 #include "hmi.h"
 #include "key.h"
+#include "openmv.h"
+//#include "uart4.h"
 
 
 //#define 	USART_DEBUG 	USART2 
@@ -55,6 +57,8 @@ int main(void)
 	uart_init(115200);			//USART1初始化————用于与USART HMI串口屏通信
 	Usart2_Init(115200);		//USART2初始化————USART_DEBUG
 	Usart3_Init(115200);		//USART3初始化————用于与Openmv通信
+	
+	Usart4_Init(115200);			//UART4初始化————用于UART_DEBUG
 
 	TIM3_PWM_Init(7199, 199);	//72000000 / 200 = 360kHz; 360kHz / 7200 = 50Hz = 0.02s = 20ms
 							 	//7200——20ms; 1ms——360; 0.5ms——180
@@ -102,6 +106,8 @@ int main(void)
 
 			UsartPrintf(USART_DEBUG, "Roll:  %f\r\n", (float)roll);
 			UsartPrintf(USART_DEBUG, "yaw:  %f\r\n", (float)yaw);
+			UsartPrintf(USART4, "Roll:  %f\r\n", (float)roll);
+			//printf("Roll:  %f\r\n", (float)roll);
 			//printf("temp:  %f\r\n",(float)temp);
 			//UsartPrintf(USART2, " \r\n");
 
@@ -148,8 +154,6 @@ int main(void)
 					//angle_distance = ;
 				}
 				
-				
-
 				//UsartPrintf(USART2, "Yaw: %d\r\n", angle);
 				//UsartPrintf(USART2, "Distance: %d\r\n", distance);
 				//b=(USART_RX_BUF[0]);
@@ -203,6 +207,7 @@ int main(void)
 
 			
 		}
+		
 		
 
 

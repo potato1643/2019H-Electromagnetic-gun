@@ -8,6 +8,8 @@
         "led.h": "c",
         "mpuiic.h": "c",
         "delay.h": "c",
-        "timer.h": "c"
+        "timer.h": "c",
+        "openmv.h": "c",
+        "hmi.h": "c"
     }
 }

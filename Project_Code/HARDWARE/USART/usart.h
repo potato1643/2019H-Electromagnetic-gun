@@ -6,13 +6,14 @@
 
 
 #define USART_DEBUG		USART2		//调试打印所使用的串口组
+#define USART4  UART4
 
 
 void Usart1_Init(unsigned int baud);
-
 void Usart2_Init(unsigned int baud);
-
 void Usart3_Init(unsigned int baud);
+
+void Usart4_Init(unsigned int baud);
 
 void Usart_SendString(USART_TypeDef *USARTx, unsigned char *str, unsigned short len);
 

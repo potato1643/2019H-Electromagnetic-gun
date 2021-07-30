@@ -151,7 +151,7 @@ void Usart2_Init(unsigned int baud)
 *
 *	返回参数：	无
 *
-*	说明：		TX-PC10		RX-PC11		(PartialRemap)
+*	说明：		TX-PD8		RX-PD9		(FullRemap)
 ************************************************************
 */
 void Usart3_Init(unsigned int baud)
@@ -161,23 +161,23 @@ void Usart3_Init(unsigned int baud)
 	USART_InitTypeDef usartInitStruct;
 	NVIC_InitTypeDef nvicInitStruct;
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD, ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
 
-	GPIO_PinRemapConfig(GPIO_PartialRemap_USART3, ENABLE);
+	GPIO_PinRemapConfig(GPIO_FullRemap_USART3, ENABLE);
 	
-	//PC10	TXD
+	//PD8	TXD
 	gpioInitStruct.GPIO_Mode = GPIO_Mode_AF_PP;
-	gpioInitStruct.GPIO_Pin = GPIO_Pin_10;
+	gpioInitStruct.GPIO_Pin = GPIO_Pin_8;
 	gpioInitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOC, &gpioInitStruct);
+	GPIO_Init(GPIOD, &gpioInitStruct);
 	
-	//PC11	RXD
+	//PD9	RXD
 	gpioInitStruct.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-	gpioInitStruct.GPIO_Pin = GPIO_Pin_11;
+	gpioInitStruct.GPIO_Pin = GPIO_Pin_9;
 	gpioInitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOC, &gpioInitStruct);
+	GPIO_Init(GPIOD, &gpioInitStruct);
 	
 	usartInitStruct.USART_BaudRate = baud;
 	usartInitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;		//无硬件流控
@@ -198,6 +198,62 @@ void Usart3_Init(unsigned int baud)
 	NVIC_Init(&nvicInitStruct);
 
 }
+
+/*
+************************************************************
+*	函数名称：	Uart4_Init
+*
+*	函数功能：	串口4初始化
+*
+*	入口参数：	baud：设定的波特率
+*
+*	返回参数：	无
+*
+*	说明：		TX-PC10		RX-PC11		(PartialRemap)
+************************************************************
+*/
+void Usart4_Init(unsigned int baud)
+{
+
+	GPIO_InitTypeDef gpioInitStruct;
+	USART_InitTypeDef uart4InitStruct;
+	NVIC_InitTypeDef nvicInitStruct;
+
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
+	RCC_APB1PeriphResetCmd(RCC_APB1Periph_UART4, ENABLE);
+	
+	//PC10	TXD
+	gpioInitStruct.GPIO_Mode = GPIO_Mode_AF_PP;
+	gpioInitStruct.GPIO_Pin = GPIO_Pin_10;
+	gpioInitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOC, &gpioInitStruct);
+	
+	//PC11	RXD
+	gpioInitStruct.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+	gpioInitStruct.GPIO_Pin = GPIO_Pin_11;
+	gpioInitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOC, &gpioInitStruct);
+	
+	uart4InitStruct.USART_BaudRate = baud;
+	uart4InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;		//无硬件流控
+	uart4InitStruct.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;						//接收和发送
+	uart4InitStruct.USART_Parity = USART_Parity_No;									//无校验
+	uart4InitStruct.USART_StopBits = USART_StopBits_1;								//1位停止位
+	uart4InitStruct.USART_WordLength = USART_WordLength_8b;							//8位数据位
+	USART_Init(UART4, &uart4InitStruct);
+	
+	USART_Cmd(UART4, ENABLE);														//使能串口
+	
+	USART_ITConfig(UART4, USART_IT_RXNE, ENABLE);									//使能接收中断
+	
+	nvicInitStruct.NVIC_IRQChannel = UART4_IRQn;
+	nvicInitStruct.NVIC_IRQChannelCmd = ENABLE;
+	nvicInitStruct.NVIC_IRQChannelPreemptionPriority = 0;
+	nvicInitStruct.NVIC_IRQChannelSubPriority = 0;
+	NVIC_Init(&nvicInitStruct);
+
+}
+
 
 /*
 ************************************************************
