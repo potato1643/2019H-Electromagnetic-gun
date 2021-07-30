@@ -53,12 +53,13 @@ int main(void)
   	OLED_DisplayTurn(0);       //0正常显示 1 屏幕翻转显示
 	MPU_Init();					       //初始化MPU6050
 	
-	//Usart1_Init(115200);		//USART1初始化
-	uart_init(115200);			//USART1初始化————用于与USART HMI串口屏通信
+	Usart1_Init(115200);		//USART1初始化
+	//uart_init(115200);			//USART1初始化————用于与USART HMI串口屏通信
 	Usart2_Init(115200);		//USART2初始化————USART_DEBUG
 	Usart3_Init(115200);		//USART3初始化————用于与Openmv通信
 	
-	Usart4_Init(115200);			//UART4初始化————用于UART_DEBUG
+	//UART5_Init(115200);			//UART4初始化————用于UART_DEBUG
+	USART5_Configuration();
 
 	TIM3_PWM_Init(7199, 199);	//72000000 / 200 = 360kHz; 360kHz / 7200 = 50Hz = 0.02s = 20ms
 							 	//7200——20ms; 1ms——360; 0.5ms——180
@@ -91,6 +92,8 @@ int main(void)
 	//OLED_ShowString(0,47,"TEMP:",16,1);
 	OLED_Refresh();
 
+
+	LED0 = 0;//LED点亮
  	while(1)
 	{
 		
@@ -100,14 +103,13 @@ int main(void)
 			MPU_Get_Accelerometer(&aacx,&aacy,&aacz);	//得到加速度传感器数据
 			MPU_Get_Gyroscope(&gyrox,&gyroy,&gyroz);	//得到陀螺仪数据
 			
-			LED0 = 0;//LED点亮
+			
 			//BEEP = 1;//BEEP关闭
 			//printf("Pitch:  %f\r\n",(float)pitch);
 
-			UsartPrintf(USART_DEBUG, "Roll:  %f\r\n", (float)roll);
-			UsartPrintf(USART_DEBUG, "yaw:  %f\r\n", (float)yaw);
-			UsartPrintf(USART4, "Roll:  %f\r\n", (float)roll);
-			//printf("Roll:  %f\r\n", (float)roll);
+			//UsartPrintf(USART_DEBUG, "Roll:  %f\r\n", (float)roll);
+			//UsartPrintf(USART_DEBUG, "yaw:  %f\r\n", (float)yaw);
+			//UsartPrintf(USART4, "Roll:  %f\r\n", (float)roll);
 			//printf("temp:  %f\r\n",(float)temp);
 			//UsartPrintf(USART2, " \r\n");
 
@@ -119,14 +121,15 @@ int main(void)
 			OLED_ShowFloat(50,31,yaw,5,16,1);
 			//OLED_ShowFloat(50,47,(float)temp/100,5,16,1);
 			OLED_Refresh();
+			printf("Roll:  %f\r\n", (float)roll);
 
-			if(USART_RX_STA&0x8000)
+			if(USART1_RX_STA&0x8000)
 			{					   
-				len=USART_RX_STA&0x3fff;//得到此次接受数据的长度
+				len=USART1_RX_STA&0x3fff;//得到此次接受数据的长度
 				//UsartPrintf(USART2, "\r\n您发送的消息为:\r\n\r\n");
 				for(t = 0; t < len; t++)
 				{
-					men[t] = USART_RX_BUF[t];//向串口一发送数据
+					men[t] = USART1_RX_BUF[t];//向串口一发送数据
 					//USART_SendData(USART1, USART_RX_BUF[t]);//向串口一发送数据
 					while(USART_GetFlagStatus(USART1,USART_FLAG_TC)!=SET);//等待发送结束
 				}
@@ -154,7 +157,8 @@ int main(void)
 					//angle_distance = ;
 				}
 				
-				//UsartPrintf(USART2, "Yaw: %d\r\n", angle);
+				//printf("Roll:  %f\r\n", (float)roll);
+				//UsartPrintf(USART_DEBUG, "Yaw: %d\r\n", angle);
 				//UsartPrintf(USART2, "Distance: %d\r\n", distance);
 				//b=(USART_RX_BUF[0]);
 				//UsartPrintf(USART2, "Sucess Received!!!!\r\n");

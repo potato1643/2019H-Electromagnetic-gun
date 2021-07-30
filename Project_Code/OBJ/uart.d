@@ -31,3 +31,4 @@
 ..\obj\uart.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\obj\uart.o: ..\SYSTEM\uart\uart.h
 ..\obj\uart.o: D:\KeilMDK5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\uart.o: ..\HARDWARE\LED\led.h

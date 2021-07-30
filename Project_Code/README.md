@@ -22,6 +22,10 @@
 
 OLED + MPU6050 + Beep + LED + Two_Dimensional_PTZ + USART1_3 + HMI + Button（舍弃了，直接用串口屏实现）+ 180°Servo 精确控制 + USART2/USART3端口重映射 + PWM端口更改 + Openmv
 
+USART1-3	USART_COMMUNICATION
+
+UART4/5	UART_DEBUG
+
 一.接线
 模块共有:Stm32f103C8T6、OLED、MPU6050
 ①OLED:          SCL->PA1     SDA->PA3                       供电为3.3V
