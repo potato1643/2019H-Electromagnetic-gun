@@ -1,5 +1,5 @@
 Dependencies for Project 'Electromagnetic-gun', Target 'Electromagnetic-gun': (DO NOT MODIFY !)
-F (.\main.c)(0x61035545)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\uart -I ..\HARDWARE\MPU6050 -I ..\HARDWARE\MPU6050\eMPL -I ..\HARDWARE\OLED -I ..\HARDWARE\BEEP -I ..\HARDWARE\LED -I ..\HARDWARE\TIMER -I ..\HARDWARE\USART -I ..\HARDWARE\HMI -I ..\HARDWARE\KEY -I ..\HARDWARE\OPENMV-I F:\电子设计竞赛\21-8-4国赛\训练项目\code\dcp\Project_Code\USER\RTE-I D:\KeilMDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\KeilMDK5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x6103B35E)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\uart -I ..\HARDWARE\MPU6050 -I ..\HARDWARE\MPU6050\eMPL -I ..\HARDWARE\OLED -I ..\HARDWARE\BEEP -I ..\HARDWARE\LED -I ..\HARDWARE\TIMER -I ..\HARDWARE\USART -I ..\HARDWARE\HMI -I ..\HARDWARE\KEY -I ..\HARDWARE\OPENMV-I F:\电子设计竞赛\21-8-4国赛\训练项目\code\dcp\Project_Code\USER\RTE-I D:\KeilMDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\KeilMDK5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (..\HARDWARE\OLED\oled.h)(0x60AE57A9)
 I (..\SYSTEM\sys\sys.h)(0x608186D8)
 I (..\USER\stm32f10x.h)(0x608186D8)
@@ -32,13 +32,13 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x608186D8)
 I (..\SYSTEM\delay\delay.h)(0x608186D8)
 I (D:\KeilMDK5\ARM\ARMCC\include\stdlib.h)(0x569DEA3A)
-I (..\SYSTEM\uart\uart.h)(0x6103551F)
+I (..\SYSTEM\uart\uart.h)(0x6103B0BA)
 I (D:\KeilMDK5\ARM\ARMCC\include\stdio.h)(0x569DEA3A)
 I (..\HARDWARE\MPU6050\mpu6050.h)(0x60AD8333)
 I (..\HARDWARE\MPU6050\mpuiic.h)(0x60ADCB19)
 I (..\HARDWARE\MPU6050\eMPL\inv_mpu.h)(0x54B9E068)
 I (..\HARDWARE\MPU6050\eMPL\inv_mpu_dmp_motion_driver.h)(0x60ADDD24)
-I (..\HARDWARE\USART\usart.h)(0x61034D06)
+I (..\HARDWARE\USART\usart.h)(0x6103B086)
 I (..\HARDWARE\LED\led.h)(0x610346D7)
 I (..\HARDWARE\BEEP\beep.h)(0x50517C96)
 I (..\HARDWARE\TIMER\timer.h)(0x60FFD2A8)
@@ -139,7 +139,7 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x608186D8)
 I (..\SYSTEM\delay\delay.h)(0x608186D8)
-I (..\SYSTEM\uart\uart.h)(0x6103551F)
+I (..\SYSTEM\uart\uart.h)(0x6103B0BA)
 I (D:\KeilMDK5\ARM\ARMCC\include\stdio.h)(0x569DEA3A)
 F (..\HARDWARE\MPU6050\mpuiic.c)(0x60ADCB19)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\uart -I ..\HARDWARE\MPU6050 -I ..\HARDWARE\MPU6050\eMPL -I ..\HARDWARE\OLED -I ..\HARDWARE\BEEP -I ..\HARDWARE\LED -I ..\HARDWARE\TIMER -I ..\HARDWARE\USART -I ..\HARDWARE\HMI -I ..\HARDWARE\KEY -I ..\HARDWARE\OPENMV-I F:\电子设计竞赛\21-8-4国赛\训练项目\code\dcp\Project_Code\USER\RTE-I D:\KeilMDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\KeilMDK5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\mpuiic.o --omf_browse ..\obj\mpuiic.crf --depend ..\obj\mpuiic.d)
 I (..\HARDWARE\MPU6050\mpuiic.h)(0x60ADCB19)
@@ -210,7 +210,7 @@ I (..\STM32F10x_FWLib\inc\misc.h)(0x608186D8)
 I (..\HARDWARE\MPU6050\eMPL\inv_mpu_dmp_motion_driver.h)(0x60ADDD24)
 I (..\HARDWARE\MPU6050\eMPL\dmpKey.h)(0x50CA9A0C)
 I (..\HARDWARE\MPU6050\eMPL\dmpmap.h)(0x50CA9A0C)
-I (..\SYSTEM\uart\uart.h)(0x6103551F)
+I (..\SYSTEM\uart\uart.h)(0x6103B0BA)
 I (..\SYSTEM\sys\sys.h)(0x608186D8)
 I (..\SYSTEM\delay\delay.h)(0x608186D8)
 F (..\HARDWARE\MPU6050\eMPL\inv_mpu.c)(0x60FC3EA7)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\uart -I ..\HARDWARE\MPU6050 -I ..\HARDWARE\MPU6050\eMPL -I ..\HARDWARE\OLED -I ..\HARDWARE\BEEP -I ..\HARDWARE\LED -I ..\HARDWARE\TIMER -I ..\HARDWARE\USART -I ..\HARDWARE\HMI -I ..\HARDWARE\KEY -I ..\HARDWARE\OPENMV-I F:\电子设计竞赛\21-8-4国赛\训练项目\code\dcp\Project_Code\USER\RTE-I D:\KeilMDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\KeilMDK5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\inv_mpu.o --omf_browse ..\obj\inv_mpu.crf --depend ..\obj\inv_mpu.d)
@@ -252,7 +252,7 @@ I (..\HARDWARE\MPU6050\mpu6050.h)(0x60AD8333)
 I (..\HARDWARE\MPU6050\mpuiic.h)(0x60ADCB19)
 I (..\SYSTEM\sys\sys.h)(0x608186D8)
 I (..\SYSTEM\delay\delay.h)(0x608186D8)
-I (..\SYSTEM\uart\uart.h)(0x6103551F)
+I (..\SYSTEM\uart\uart.h)(0x6103B0BA)
 F (..\HARDWARE\OLED\oled.c)(0x60FCCB4B)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\uart -I ..\HARDWARE\MPU6050 -I ..\HARDWARE\MPU6050\eMPL -I ..\HARDWARE\OLED -I ..\HARDWARE\BEEP -I ..\HARDWARE\LED -I ..\HARDWARE\TIMER -I ..\HARDWARE\USART -I ..\HARDWARE\HMI -I ..\HARDWARE\KEY -I ..\HARDWARE\OPENMV-I F:\电子设计竞赛\21-8-4国赛\训练项目\code\dcp\Project_Code\USER\RTE-I D:\KeilMDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\KeilMDK5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\oled.o --omf_browse ..\obj\oled.crf --depend ..\obj\oled.d)
 I (..\HARDWARE\OLED\oled.h)(0x60AE57A9)
 I (..\SYSTEM\sys\sys.h)(0x608186D8)
@@ -414,10 +414,10 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x608186D8)
 I (..\HARDWARE\LED\led.h)(0x610346D7)
-I (..\SYSTEM\uart\uart.h)(0x6103551F)
+I (..\SYSTEM\uart\uart.h)(0x6103B0BA)
 I (D:\KeilMDK5\ARM\ARMCC\include\stdio.h)(0x569DEA3A)
-F (..\HARDWARE\USART\usart.c)(0x61034D2A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\uart -I ..\HARDWARE\MPU6050 -I ..\HARDWARE\MPU6050\eMPL -I ..\HARDWARE\OLED -I ..\HARDWARE\BEEP -I ..\HARDWARE\LED -I ..\HARDWARE\TIMER -I ..\HARDWARE\USART -I ..\HARDWARE\HMI -I ..\HARDWARE\KEY -I ..\HARDWARE\OPENMV-I F:\电子设计竞赛\21-8-4国赛\训练项目\code\dcp\Project_Code\USER\RTE-I D:\KeilMDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\KeilMDK5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\usart.o --omf_browse ..\obj\usart.crf --depend ..\obj\usart.d)
-I (..\HARDWARE\USART\usart.h)(0x61034D06)
+F (..\HARDWARE\USART\usart.c)(0x6103B06D)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\uart -I ..\HARDWARE\MPU6050 -I ..\HARDWARE\MPU6050\eMPL -I ..\HARDWARE\OLED -I ..\HARDWARE\BEEP -I ..\HARDWARE\LED -I ..\HARDWARE\TIMER -I ..\HARDWARE\USART -I ..\HARDWARE\HMI -I ..\HARDWARE\KEY -I ..\HARDWARE\OPENMV-I F:\电子设计竞赛\21-8-4国赛\训练项目\code\dcp\Project_Code\USER\RTE-I D:\KeilMDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\KeilMDK5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\usart.o --omf_browse ..\obj\usart.crf --depend ..\obj\usart.d)
+I (..\HARDWARE\USART\usart.h)(0x6103B086)
 I (..\USER\stm32f10x.h)(0x608186D8)
 I (..\CORE\core_cm3.h)(0x608186DA)
 I (D:\KeilMDK5\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
@@ -482,7 +482,7 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x608186D8)
-I (..\HARDWARE\USART\usart.h)(0x61034D06)
+I (..\HARDWARE\USART\usart.h)(0x6103B086)
 I (..\HARDWARE\HMI\hmi.h)(0x60FC4C65)
 F (..\HARDWARE\KEY\key.c)(0x550BA50A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\uart -I ..\HARDWARE\MPU6050 -I ..\HARDWARE\MPU6050\eMPL -I ..\HARDWARE\OLED -I ..\HARDWARE\BEEP -I ..\HARDWARE\LED -I ..\HARDWARE\TIMER -I ..\HARDWARE\USART -I ..\HARDWARE\HMI -I ..\HARDWARE\KEY -I ..\HARDWARE\OPENMV-I F:\电子设计竞赛\21-8-4国赛\训练项目\code\dcp\Project_Code\USER\RTE-I D:\KeilMDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\KeilMDK5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\key.o --omf_browse ..\obj\key.crf --depend ..\obj\key.d)
 I (..\USER\stm32f10x.h)(0x608186D8)
@@ -517,7 +517,7 @@ I (..\HARDWARE\KEY\key.h)(0x550A8567)
 I (..\SYSTEM\sys\sys.h)(0x608186D8)
 I (..\SYSTEM\delay\delay.h)(0x608186D8)
 F (..\HARDWARE\OPENMV\openmv.c)(0x60FFF676)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\uart -I ..\HARDWARE\MPU6050 -I ..\HARDWARE\MPU6050\eMPL -I ..\HARDWARE\OLED -I ..\HARDWARE\BEEP -I ..\HARDWARE\LED -I ..\HARDWARE\TIMER -I ..\HARDWARE\USART -I ..\HARDWARE\HMI -I ..\HARDWARE\KEY -I ..\HARDWARE\OPENMV-I F:\电子设计竞赛\21-8-4国赛\训练项目\code\dcp\Project_Code\USER\RTE-I D:\KeilMDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\KeilMDK5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\openmv.o --omf_browse ..\obj\openmv.crf --depend ..\obj\openmv.d)
-I (..\HARDWARE\USART\usart.h)(0x61034D06)
+I (..\HARDWARE\USART\usart.h)(0x6103B086)
 I (..\USER\stm32f10x.h)(0x608186D8)
 I (..\CORE\core_cm3.h)(0x608186DA)
 I (D:\KeilMDK5\ARM\ARMCC\include\stdint.h)(0x569DEA3A)
@@ -1283,7 +1283,7 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x608186D8)
-F (..\SYSTEM\uart\uart.c)(0x6103553A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\uart -I ..\HARDWARE\MPU6050 -I ..\HARDWARE\MPU6050\eMPL -I ..\HARDWARE\OLED -I ..\HARDWARE\BEEP -I ..\HARDWARE\LED -I ..\HARDWARE\TIMER -I ..\HARDWARE\USART -I ..\HARDWARE\HMI -I ..\HARDWARE\KEY -I ..\HARDWARE\OPENMV-I F:\电子设计竞赛\21-8-4国赛\训练项目\code\dcp\Project_Code\USER\RTE-I D:\KeilMDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\KeilMDK5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\uart.o --omf_browse ..\obj\uart.crf --depend ..\obj\uart.d)
+F (..\SYSTEM\uart\uart.c)(0x6103B19B)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\uart -I ..\HARDWARE\MPU6050 -I ..\HARDWARE\MPU6050\eMPL -I ..\HARDWARE\OLED -I ..\HARDWARE\BEEP -I ..\HARDWARE\LED -I ..\HARDWARE\TIMER -I ..\HARDWARE\USART -I ..\HARDWARE\HMI -I ..\HARDWARE\KEY -I ..\HARDWARE\OPENMV-I F:\电子设计竞赛\21-8-4国赛\训练项目\code\dcp\Project_Code\USER\RTE-I D:\KeilMDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I D:\KeilMDK5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\uart.o --omf_browse ..\obj\uart.crf --depend ..\obj\uart.d)
 I (..\SYSTEM\sys\sys.h)(0x608186D8)
 I (..\USER\stm32f10x.h)(0x608186D8)
 I (..\CORE\core_cm3.h)(0x608186DA)
@@ -1313,6 +1313,6 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x608186D8)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x608186D8)
-I (..\SYSTEM\uart\uart.h)(0x6103551F)
+I (..\SYSTEM\uart\uart.h)(0x6103B0BA)
 I (D:\KeilMDK5\ARM\ARMCC\include\stdio.h)(0x569DEA3A)
 I (..\HARDWARE\LED\led.h)(0x610346D7)

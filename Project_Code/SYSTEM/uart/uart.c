@@ -54,12 +54,12 @@ int fputc(int ch, FILE *f)
 #ifdef EN_UART5_RX   //如果使能了接收
 //串口1中断服务程序
 //注意,读取USARTx->SR能避免莫名其妙的错误   	
-u8 USART_RX_BUF[64];     //接收缓冲,最大64个字节.
+u8 USART5_RX_BUF[USART_REC_LEN];     //接收缓冲,最大64个字节.
 //接收状态
 //bit7，接收完成标志
 //bit6，接收到0x0d
 //bit5~0，接收到的有效字节数目
-u8 USART_RX_STA=0;       //接收状态标记	  
+u8 USART5_RX_STA=0;       //接收状态标记	  
 
 void UART5_IRQHandler(void)
 {
@@ -67,20 +67,20 @@ void UART5_IRQHandler(void)
 	if(UART5->SR&(1<<5))//接收到数据
 	{	 
 		res=UART5->DR; 
-		if((USART_RX_STA&0x80)==0)//接收未完成
+		if((USART5_RX_STA&0x80)==0)//接收未完成
 		{
-			if(USART_RX_STA&0x40)//接收到了0x0d
+			if(USART5_RX_STA&0x40)//接收到了0x0d
 			{
-				if(res!=0x0a)USART_RX_STA=0;//接收错误,重新开始
-				else USART_RX_STA|=0x80;	//接收完成了 
+				if(res!=0x0a)USART5_RX_STA=0;//接收错误,重新开始
+				else USART5_RX_STA|=0x80;	//接收完成了 
 			}else //还没收到0X0D
 			{	
-				if(res==0x0d)USART_RX_STA|=0x40;
+				if(res==0x0d)USART5_RX_STA|=0x40;
 				else
 				{
-					USART_RX_BUF[USART_RX_STA&0X3F]=res;
-					USART_RX_STA++;
-					if(USART_RX_STA>63)USART_RX_STA=0;//接收数据错误,重新开始接收	  
+					USART5_RX_BUF[USART5_RX_STA&0X3F]=res;
+					USART5_RX_STA++;
+					if(USART5_RX_STA>63)USART5_RX_STA=0;//接收数据错误,重新开始接收	  
 				}		 
 			}
 		}  		 									     

@@ -18,10 +18,7 @@ PA2:LED0
 #include "hmi.h"
 #include "key.h"
 #include "openmv.h"
-//#include "uart4.h"
-
-
-//#define 	USART_DEBUG 	USART2 
+ 
 
 int main(void)
 {	 
@@ -53,13 +50,13 @@ int main(void)
   	OLED_DisplayTurn(0);       //0正常显示 1 屏幕翻转显示
 	MPU_Init();					       //初始化MPU6050
 	
-	Usart1_Init(115200);		//USART1初始化
-	//uart_init(115200);			//USART1初始化————用于与USART HMI串口屏通信
-	Usart2_Init(115200);		//USART2初始化————USART_DEBUG
+	Usart1_Init(115200);		//USART1初始化————用于与USART HMI串口屏通信
+	Usart2_Init(115200);		//USART2初始化————
 	Usart3_Init(115200);		//USART3初始化————用于与Openmv通信
 	
-	//UART5_Init(115200);			//UART4初始化————用于UART_DEBUG
-	USART5_Configuration();
+	//UART5_Init(115200);			//UART5初始化————用于UART_DEBUG
+	USART5_Configuration();		//UART5初始化————用于UART_DEBUG
+
 
 	TIM3_PWM_Init(7199, 199);	//72000000 / 200 = 360kHz; 360kHz / 7200 = 50Hz = 0.02s = 20ms
 							 	//7200——20ms; 1ms——360; 0.5ms——180
@@ -68,7 +65,7 @@ int main(void)
 	OLED_ShowString(0,28,"Initialise",24,1);
 	OLED_Refresh();
 
-	//Servo初始化————转90度
+	//180°Servo初始化————转90度
 	//180——0°; 4——Δ1°
 	TIM_SetCompare1(TIM3, 590);			//TIM3_CH1_PA6_垂直方向_ROLL
 	//经过实验这里为590; 理论上为540;
@@ -121,15 +118,15 @@ int main(void)
 			OLED_ShowFloat(50,31,yaw,5,16,1);
 			//OLED_ShowFloat(50,47,(float)temp/100,5,16,1);
 			OLED_Refresh();
-			printf("Roll:  %f\r\n", (float)roll);
+			//printf("Roll:  %f\r\n", (float)roll);
 
-			if(USART1_RX_STA&0x8000)
+			if(USART_RX_STA&0x8000)
 			{					   
-				len=USART1_RX_STA&0x3fff;//得到此次接受数据的长度
+				len=USART_RX_STA&0x3fff;//得到此次接受数据的长度
 				//UsartPrintf(USART2, "\r\n您发送的消息为:\r\n\r\n");
 				for(t = 0; t < len; t++)
 				{
-					men[t] = USART1_RX_BUF[t];//向串口一发送数据
+					men[t] = USART_RX_BUF[t];//向串口一发送数据
 					//USART_SendData(USART1, USART_RX_BUF[t]);//向串口一发送数据
 					while(USART_GetFlagStatus(USART1,USART_FLAG_TC)!=SET);//等待发送结束
 				}
@@ -202,6 +199,7 @@ int main(void)
 
 			if(angle_distance >= 0)
 			angle_roll = 590 + angle_distance*4;
+			//printf("angle_roll: %d\r\n", angle_roll);
 
 			TIM_SetCompare2(TIM3, angle_yaw);
 			//delay_ms(5000);
