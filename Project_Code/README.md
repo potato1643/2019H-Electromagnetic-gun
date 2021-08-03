@@ -14,9 +14,15 @@
 >
 > Openmv：
 >
-> UART_TX——PC11
+> UART_RX——P5		PB11(STM32H743)
 >
-> UART_RX——PC10
+> UART_TX——P4		PB10(STM32H743)
+>
+> STM32F103：
+>
+> USART3_TX——PD8
+>
+> USART3_RX——PD9
 
 ## 底层驱动实现
 
