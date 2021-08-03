@@ -1,4 +1,5 @@
 /*******************************************************
+Pin：
 PA15:AD0   PB10:IIC_SCL_MPU6050   PB11:IIC_SDA_MPU6050
 PA1:IIC_SCL_OLED      PC3:IIC_SDA_OLED
 PA2:LED0
@@ -15,10 +16,16 @@ PA2:LED0
 #include "led.h"
 #include "beep.h"
 #include "timer.h"
-#include "hmi.h"
+//#include "hmi.h"
 #include "key.h"
 #include "openmv.h"
- 
+//#include "raspberry.h"
+#include "math.h"
+
+//全局变量
+extern u8 CX, CY, CW, CH;		//Openmv变量
+//extern u8 USART2_RX_BUF[USART_REC_LEN]; //接收缓冲,最大USART_REC_LEN个字节.末字节为换行符 
+//extern u8 USART2_RX_STA;         		//接收状态标记	
 
 int main(void)
 {	 
@@ -35,27 +42,36 @@ int main(void)
 	s16 angle_distance = 0;
 	//u16 data = 986;
 	u16 len;
+	u16 usart2_len;
 	//int b;
 	u16 t,i;
 	u8 men[5];
+	u8 usart2[5];
+	//u16 usart2[200];
 	vu8 key=0;
+	u16 openmv_flag = 0;
+	u32 Intermediate_Variable;
+	u32 Distance_From_Center;
+	u16 Angle_K = 20/56.0357;
+	u16 Angle;
 
-	delay_init();				       //延时初始化
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); 	 //设置NVIC中断分组2:2位抢占优先级，2位响应优先级
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置NVIC中断分组2:2位抢占优先级，2位响应优先级
+
+	delay_init();		//延时初始化
 	LED_Init();         //LED初始化
 	BEEP_Init();        //BEEP初始化
 	KEY_Init();         //按键初始化
-	OLED_Init();
+	OLED_Init();		//OLED初始化
 	OLED_ColorTurn(0);         //0正常显示，1 反色显示
   	OLED_DisplayTurn(0);       //0正常显示 1 屏幕翻转显示
 	MPU_Init();					       //初始化MPU6050
 	
 	Usart1_Init(115200);		//USART1初始化————用于与USART HMI串口屏通信
-	Usart2_Init(115200);		//USART2初始化————
+	Usart2_Init(115200);		//USART2初始化————用于与raspberry-pi通信
 	Usart3_Init(115200);		//USART3初始化————用于与Openmv通信
 	
 	//UART5_Init(115200);			//UART5初始化————用于UART_DEBUG
-	USART5_Configuration();		//UART5初始化————用于UART_DEBUG
+	UART5_Configuration();		//UART5初始化————用于UART_DEBUG
 
 
 	TIM3_PWM_Init(7199, 199);	//72000000 / 200 = 360kHz; 360kHz / 7200 = 50Hz = 0.02s = 20ms
@@ -91,9 +107,10 @@ int main(void)
 
 
 	LED0 = 0;//LED点亮
+
  	while(1)
 	{
-		
+
 		if(mpu_dmp_get_data(&pitch,&roll,&yaw)==0)
 		{
 			//temp=MPU_Get_Temperature();				//得到温度值
@@ -120,7 +137,7 @@ int main(void)
 			OLED_Refresh();
 			//printf("Roll:  %f\r\n", (float)roll);
 
-			if(USART_RX_STA&0x8000)
+			if(USART_RX_STA&0x8000)//HMI串口屏接收数据
 			{					   
 				len=USART_RX_STA&0x3fff;//得到此次接受数据的长度
 				//UsartPrintf(USART2, "\r\n您发送的消息为:\r\n\r\n");
@@ -133,11 +150,12 @@ int main(void)
 				for(i = 0; i < len; ++i)
 				{
 					men[i] = men[i] & 0x000f;
-					//UsartPrintf(USART2, "%x",men[i]);
+					printf("%d",men[i]);
+					printf("\r\n");
+					
 				}
-
 				
-				if(men[0] == 9)
+				if(men[0] == 9)//键盘控制yaw
 				{
 					if(men[1] == 1)
 					angle = 10*men[2] + men[3];
@@ -148,10 +166,18 @@ int main(void)
 					}
 				}
 			
-				if(men[0] == 7)
+				if(men[0] == 7)//键盘控制roll——distance
 				{
 					distance = 100*men[1] + 10*men[2] + men[3];
 					//angle_distance = ;
+				}
+
+				if(men[0] == 1)//键盘控制openmv
+				{
+					if(men[1] == 1)
+					openmv_flag = 1;
+					else
+					openmv_flag = 0;
 				}
 				
 				//printf("Roll:  %f\r\n", (float)roll);
@@ -161,8 +187,29 @@ int main(void)
 				//UsartPrintf(USART2, "Sucess Received!!!!\r\n");
 				//UsartPrintf(USART2, "%d",b);
 				//UsartPrintf(USART2, "\r\n\r\n");
-				USART_RX_STA=0;
+				USART_RX_STA = 0;
 			}
+
+			if(USART2_RX_STA & 0x8000)//Raspberry接收数据
+			{					   
+				usart2_len = USART2_RX_STA & 0x3fff;//得到此次接受数据的长度
+				//UsartPrintf(USART2, "\r\n您发送的消息为:\r\n\r\n");
+				for(t = 0; t < usart2_len; t++)
+				{
+					usart2[t] = USART2_RX_BUF[t];//向串口一发送数据
+					//USART_SendData(USART1, USART_RX_BUF[t]);//向串口一发送数据
+					while(USART_GetFlagStatus(USART2,USART_FLAG_TC) != SET);//等待发送结束
+				}
+				for(i = 0; i < 5; ++i)
+				{
+					//men[i] = men[i] & 0x000f;
+					printf("%c",usart2[i]);
+					//printf("\r\n");
+					
+				}
+				USART2_RX_STA=0;
+			}
+				
 
 			//暂时先枚举
 			switch (distance)		////90°为中心轴线————600; 120cm
@@ -192,6 +239,7 @@ int main(void)
 				angle_distance = 0;
 				break;
 			}
+
 			if(angle >= 0)			//没有angle输入时候，angle = 0
 			angle_yaw = 580 + angle*4;
 			else
@@ -206,12 +254,45 @@ int main(void)
 			//必须加这个延时，不然MPU6050数据处理速度不及舵机转速，会出现MPU6050无法准确显示yaw的问题
 			TIM_SetCompare1(TIM3, angle_roll);
 
+			if(openmv_flag == 1)
+			{
+				TIM_SetCompare2(TIM3, 460);
+				delay_ms(1000);
+				TIM_SetCompare2(TIM3, 700);
+				delay_ms(1000);
+				printf("CX = %d\r\n", CX);
+				printf("CY = %d\r\n", CY);
+				printf("CW = %d\r\n", CW);
+				printf("CH = %d\r\n", CH);
+				printf("\r\n");
+				Intermediate_Variable = (CX-80)*(CX-80) + (CY-60)*(CY-60);
+				Distance_From_Center = sqrt(Intermediate_Variable);
+				Angle = Distance_From_Center*Angle_K;
+				printf("%d", Angle);
 
+			}
+			else
+			{
+				TIM_SetCompare1(TIM3, 590);			//TIM3_CH1_PA6_垂直方向_ROLL
+				//经过实验这里为590; 理论上为540;
+	
+				//delay_ms(5000);
+				TIM_SetCompare2(TIM3, 580);	
+			}
 			
 		}
+
+		// printf("CX = %d\r\n", CX);
+		// printf("CY = %d\r\n", CY);
+		// printf("CW = %d\r\n", CW);
+		// printf("CH = %d\r\n", CH);
+		// printf("\r\n");
+
 		
+
 		
 
 
 	} 	
 }
+	

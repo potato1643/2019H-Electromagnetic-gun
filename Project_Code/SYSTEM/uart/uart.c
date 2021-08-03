@@ -1,25 +1,26 @@
+/**
+	************************************************************
+	************************************************************
+	************************************************************
+	*	文件名： 	uart.c
+	*
+	*	作者： 		BXY
+	*
+	*	日期： 		2021-07-30
+	*
+	*	版本： 		V1.0
+	*
+	*	说明： 		单片机串口外设初始化，格式化打印
+	*
+	*	修改记录：	
+	************************************************************
+	************************************************************
+	************************************************************
+**/
+
 #include "sys.h"
 #include "uart.h"
 #include "led.h"
-////////////////////////////////////////////////////////////////////////////////// 	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//Mini STM32开发板
-//串口1初始化		   
-//正点原子@ALIENTEK
-//技术论坛:www.openedv.com
-//修改日期:2010/5/27
-//版本：V1.3
-//版权所有，盗版必究。
-//Copyright(C) 正点原子 2009-2019
-//All rights reserved
-//********************************************************************************
-//V1.3修改说明 
-//支持适应不同频率下的串口波特率设置.
-//加入了对printf的支持
-//增加了串口接收命令功能.
-//修正了printf第一个字符丢失的bug
-////////////////////////////////////////////////////////////////////////////////// 	  
- 
 
 //////////////////////////////////////////////////////////////////
 //加入以下代码,支持printf函数,而不需要选择use MicroLIB	  
@@ -48,54 +49,28 @@ int fputc(int ch, FILE *f)
 	return ch;
 }
 #endif 
-//end
-//////////////////////////////////////////////////////////////////
 
-#ifdef EN_UART5_RX   //如果使能了接收
-//串口1中断服务程序
-//注意,读取USARTx->SR能避免莫名其妙的错误   	
-u8 USART5_RX_BUF[USART_REC_LEN];     //接收缓冲,最大64个字节.
-//接收状态
-//bit7，接收完成标志
-//bit6，接收到0x0d
-//bit5~0，接收到的有效字节数目
-u8 USART5_RX_STA=0;       //接收状态标记	  
-
-void UART5_IRQHandler(void)
+/*
+************************************************************
+*	函数名称：	Uart5_Init
+*
+*	函数功能：	串口5初始化
+*
+*	入口参数：	baud：设定的波特率
+*
+*	返回参数：	无
+*
+*	说明：		TX-PC12		RX-PD2		
+************************************************************
+*/
+void UART5_Configuration(void)
 {
-	u8 res;	    
-	if(UART5->SR&(1<<5))//接收到数据
-	{	 
-		res=UART5->DR; 
-		if((USART5_RX_STA&0x80)==0)//接收未完成
-		{
-			if(USART5_RX_STA&0x40)//接收到了0x0d
-			{
-				if(res!=0x0a)USART5_RX_STA=0;//接收错误,重新开始
-				else USART5_RX_STA|=0x80;	//接收完成了 
-			}else //还没收到0X0D
-			{	
-				if(res==0x0d)USART5_RX_STA|=0x40;
-				else
-				{
-					USART5_RX_BUF[USART5_RX_STA&0X3F]=res;
-					USART5_RX_STA++;
-					if(USART5_RX_STA>63)USART5_RX_STA=0;//接收数据错误,重新开始接收	  
-				}		 
-			}
-		}  		 									     
-	}  											 
-} 
-#endif
+    GPIO_InitTypeDef GPIO_InitStructure;
+    USART_InitTypeDef USART_InitStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;        
 
-   void USART5_Configuration(void)
-{
-        GPIO_InitTypeDef GPIO_InitStructure;
-        USART_InitTypeDef USART_InitStructure;
-	    NVIC_InitTypeDef NVIC_InitStructure;        
-
- RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOD,ENABLE);
- RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART5, ENABLE);
+ 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOD,ENABLE);
+ 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART5, ENABLE);
 
   	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12;	         	//USART5 TX 
   	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
@@ -113,20 +88,70 @@ void UART5_IRQHandler(void)
   	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None; //无硬件流控 
   	USART_InitStructure.USART_Mode       = USART_Mode_Rx | USART_Mode_Tx;	//收发模式 
    
-  	/* Configure USART3 */ 
+  	/* Configure USART5 */ 
   	USART_Init(UART5, &USART_InitStructure);	//配置串口参数函数  
    
-	    NVIC_InitStructure.NVIC_IRQChannel = UART5_IRQn;     //UART4_IRQn;
-        NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-        NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-        NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-        NVIC_Init(&NVIC_InitStructure);
+	NVIC_InitStructure.NVIC_IRQChannel = UART5_IRQn;     //UART5_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
 
-  	/*USART3 receive data register is not empty */ 
+  	/*USART5 receive data register is not empty */ 
   	USART_ITConfig(UART5, USART_IT_RXNE, ENABLE);   
-  	/* Enable the USART3 */ 
+  	/* Enable the USART5 */ 
   	USART_Cmd(UART5, ENABLE);	   
 }
+
+/*
+************************************************************
+*	函数名称：	UART5_IRQHandler
+*
+*	函数功能：	串口5收发中断
+*
+*	入口参数：	无
+*
+*	返回参数：	无
+*
+*	说明：		
+************************************************************
+*/
+#ifdef EN_UART5_RX   //如果使能了接收
+//串口1中断服务程序
+//注意,读取USARTx->SR能避免莫名其妙的错误   	
+u8 USART5_RX_BUF[USART_REC_LEN];     //接收缓冲,最大64个字节.
+//接收状态
+//bit7，接收完成标志
+//bit6，接收到0x0d
+//bit5~0，接收到的有效字节数目
+u8 USART5_RX_STA = 0;       //接收状态标记	  
+
+void UART5_IRQHandler(void)
+{
+	u8 res;	    
+	if(UART5->SR&(1<<5))//接收到数据
+	{	 
+		res = UART5->DR; 
+		if((USART5_RX_STA&0x80)==0)//接收未完成
+		{
+			if(USART5_RX_STA&0x40)//接收到了0x0d
+			{
+				if(res!=0x0a)USART5_RX_STA=0;//接收错误,重新开始
+				else USART5_RX_STA|=0x80;	//接收完成了 
+			}else //还没收到0X0D
+			{	
+				if(res==0x0d)USART5_RX_STA|=0x40;
+				else
+				{
+					USART5_RX_BUF[USART5_RX_STA & 0X3F] = res;
+					USART5_RX_STA++;
+					if(USART5_RX_STA > (USART_REC_LEN-1))USART5_RX_STA=0;//接收数据错误,重新开始接收	  
+				}		 
+			}
+		}  		 									     
+	}  											 
+} 
+#endif
 
 
 

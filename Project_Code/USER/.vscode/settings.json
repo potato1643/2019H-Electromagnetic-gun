@@ -10,6 +10,8 @@
         "delay.h": "c",
         "timer.h": "c",
         "openmv.h": "c",
-        "hmi.h": "c"
+        "hmi.h": "c",
+        "raspberry-pi.h": "c",
+        "raspberry.h": "c"
     }
 }

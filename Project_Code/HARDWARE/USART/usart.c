@@ -4,9 +4,9 @@
 	************************************************************
 	*	文件名： 	usart.c
 	*
-	*	作者： 		张继瑞
+	*	作者： 		BXY
 	*
-	*	日期： 		2016-11-23
+	*	日期： 		2021-07-30
 	*
 	*	版本： 		V1.0
 	*
@@ -21,6 +21,7 @@
 //硬件驱动
 #include "usart.h"
 #include "delay.h"
+
 
 //C库
 #include <stdarg.h>
@@ -78,7 +79,7 @@ void Usart1_Init(unsigned int baud)
 	nvicInitStruct.NVIC_IRQChannel = USART1_IRQn;
 	nvicInitStruct.NVIC_IRQChannelCmd = ENABLE;
 	nvicInitStruct.NVIC_IRQChannelPreemptionPriority = 0;
-	nvicInitStruct.NVIC_IRQChannelSubPriority = 2;
+	nvicInitStruct.NVIC_IRQChannelSubPriority = 1;
 	NVIC_Init(&nvicInitStruct);
 
 }
@@ -136,7 +137,7 @@ void Usart2_Init(unsigned int baud)
 	nvicInitStruct.NVIC_IRQChannel = USART2_IRQn;
 	nvicInitStruct.NVIC_IRQChannelCmd = ENABLE;
 	nvicInitStruct.NVIC_IRQChannelPreemptionPriority = 0;
-	nvicInitStruct.NVIC_IRQChannelSubPriority = 0;
+	nvicInitStruct.NVIC_IRQChannelSubPriority = 2;
 	NVIC_Init(&nvicInitStruct);
 
 }
@@ -199,60 +200,60 @@ void Usart3_Init(unsigned int baud)
 
 }
 
-/*
-************************************************************
-*	函数名称：	Uart4_Init
-*
-*	函数功能：	串口4初始化
-*
-*	入口参数：	baud：设定的波特率
-*
-*	返回参数：	无
-*
-*	说明：		TX-PC10		RX-PC11		(PartialRemap)
-************************************************************
-*/
-void Usart4_Init(unsigned int baud)
-{
+// /*
+// ************************************************************
+// *	函数名称：	Uart4_Init
+// *
+// *	函数功能：	串口4初始化
+// *
+// *	入口参数：	baud：设定的波特率
+// *
+// *	返回参数：	无
+// *
+// *	说明：		TX-PC10		RX-PC11		(PartialRemap)
+// ************************************************************
+// */
+// void Usart4_Init(unsigned int baud)
+// {
 
-	GPIO_InitTypeDef gpioInitStruct;
-	USART_InitTypeDef uart4InitStruct;
-	NVIC_InitTypeDef nvicInitStruct;
+// 	GPIO_InitTypeDef gpioInitStruct;
+// 	USART_InitTypeDef uart4InitStruct;
+// 	NVIC_InitTypeDef nvicInitStruct;
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
-	RCC_APB1PeriphResetCmd(RCC_APB1Periph_UART4, ENABLE);
+// 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
+// 	RCC_APB1PeriphResetCmd(RCC_APB1Periph_UART4, ENABLE);
 	
-	//PC10	TXD
-	gpioInitStruct.GPIO_Mode = GPIO_Mode_AF_PP;
-	gpioInitStruct.GPIO_Pin = GPIO_Pin_10;
-	gpioInitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOC, &gpioInitStruct);
+// 	//PC10	TXD
+// 	gpioInitStruct.GPIO_Mode = GPIO_Mode_AF_PP;
+// 	gpioInitStruct.GPIO_Pin = GPIO_Pin_10;
+// 	gpioInitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+// 	GPIO_Init(GPIOC, &gpioInitStruct);
 	
-	//PC11	RXD
-	gpioInitStruct.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-	gpioInitStruct.GPIO_Pin = GPIO_Pin_11;
-	gpioInitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOC, &gpioInitStruct);
+// 	//PC11	RXD
+// 	gpioInitStruct.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+// 	gpioInitStruct.GPIO_Pin = GPIO_Pin_11;
+// 	gpioInitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+// 	GPIO_Init(GPIOC, &gpioInitStruct);
 	
-	uart4InitStruct.USART_BaudRate = baud;
-	uart4InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;		//无硬件流控
-	uart4InitStruct.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;						//接收和发送
-	uart4InitStruct.USART_Parity = USART_Parity_No;									//无校验
-	uart4InitStruct.USART_StopBits = USART_StopBits_1;								//1位停止位
-	uart4InitStruct.USART_WordLength = USART_WordLength_8b;							//8位数据位
-	USART_Init(UART4, &uart4InitStruct);
+// 	uart4InitStruct.USART_BaudRate = baud;
+// 	uart4InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;		//无硬件流控
+// 	uart4InitStruct.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;						//接收和发送
+// 	uart4InitStruct.USART_Parity = USART_Parity_No;									//无校验
+// 	uart4InitStruct.USART_StopBits = USART_StopBits_1;								//1位停止位
+// 	uart4InitStruct.USART_WordLength = USART_WordLength_8b;							//8位数据位
+// 	USART_Init(UART4, &uart4InitStruct);
 	
-	USART_Cmd(UART4, ENABLE);														//使能串口
+// 	USART_Cmd(UART4, ENABLE);														//使能串口
 	
-	USART_ITConfig(UART4, USART_IT_RXNE, ENABLE);									//使能接收中断
+// 	USART_ITConfig(UART4, USART_IT_RXNE, ENABLE);									//使能接收中断
 	
-	nvicInitStruct.NVIC_IRQChannel = UART4_IRQn;
-	nvicInitStruct.NVIC_IRQChannelCmd = ENABLE;
-	nvicInitStruct.NVIC_IRQChannelPreemptionPriority = 0;
-	nvicInitStruct.NVIC_IRQChannelSubPriority = 0;
-	NVIC_Init(&nvicInitStruct);
+// 	nvicInitStruct.NVIC_IRQChannel = UART4_IRQn;
+// 	nvicInitStruct.NVIC_IRQChannelCmd = ENABLE;
+// 	nvicInitStruct.NVIC_IRQChannelPreemptionPriority = 0;
+// 	nvicInitStruct.NVIC_IRQChannelSubPriority = 4;
+// 	NVIC_Init(&nvicInitStruct);
 
-}
+// }
 
 
 /*
@@ -363,6 +364,20 @@ void UsartPrintf(USART_TypeDef *USARTx, char *fmt,...)
 // }
 
 
+
+/*
+************************************************************
+*	函数名称：	USART1_IRQHandler
+*
+*	函数功能：	串口1收发中断
+*
+*	入口参数：	无
+*
+*	返回参数：	无
+*
+*	说明：		
+************************************************************
+*/
 #if EN_USART1_RX   //如果使能了接收
 //串口1中断服务程序
 //注意,读取USARTx->SR能避免莫名其妙的错误   	
@@ -383,7 +398,7 @@ void USART1_IRQHandler(void)                	//串口1中断服务程序
 		{
 		Res =USART_ReceiveData(USART1);	//读取接收到的数据
 		
-		if((USART_RX_STA&0x8000)==0)//接收未完成
+		if((USART_RX_STA&0x8000) == 0)//接收未完成
 			{
 			if(USART_RX_STA&0x4000)//接收到了0x0d
 				{
@@ -407,3 +422,65 @@ void USART1_IRQHandler(void)                	//串口1中断服务程序
 #endif
 }
 #endif
+
+
+/*
+************************************************************
+*	函数名称：	USART2_IRQHandler
+*
+*	函数功能：	串口2收发中断
+*
+*	入口参数：	无
+*
+*	返回参数：	无
+*
+*	说明：		
+************************************************************
+*/
+#if EN_USART2_RX   //如果使能了接收
+//串口1中断服务程序
+//注意,读取USARTx->SR能避免莫名其妙的错误   	
+u8 USART2_RX_BUF[USART_REC_LEN];     //接收缓冲,最大USART_REC_LEN个字节.
+//接收状态
+//bit15，	接收完成标志
+//bit14，	接收到0x0d
+//bit13~0，	接收到的有效字节数目
+u16 USART2_RX_STA=0;       //接收状态标记
+
+void USART2_IRQHandler(void)                	//串口2中断服务程序
+	{
+	u8 Res2;
+#if SYSTEM_SUPPORT_OS 		//如果SYSTEM_SUPPORT_OS为真，则需要支持OS.
+	OSIntEnter();    
+#endif
+	if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)  //接收中断(接收到的数据必须是0x0d 0x0a结尾)
+		{
+			//USART_ClearFlag(USART2, USART_FLAG_RXNE);
+			Res2 =USART_ReceiveData(USART2);	//读取接收到的数据
+		
+		if((USART2_RX_STA & 0x8000) == 0)//接收未完成
+			{
+			if(USART2_RX_STA & 0x4000)//接收到了0x0d
+				{
+				if(Res2 != 0x0a)USART2_RX_STA = 0;//接收错误,重新开始
+				else USART2_RX_STA |= 0x8000;	//接收完成了 
+				}
+			else //还没收到0X0D
+				{	
+				if(Res2 == 0x0d)USART2_RX_STA |= 0x4000;
+				else
+					{
+					USART2_RX_BUF[USART2_RX_STA & 0X3FFF] = Res2 ;
+					USART2_RX_STA++;
+					if(USART2_RX_STA > (USART_REC_LEN-1))USART2_RX_STA = 0;//接收数据错误,重新开始接收	  
+					}		 
+				}
+			}   		 
+     } 
+#if SYSTEM_SUPPORT_OS 	//如果SYSTEM_SUPPORT_OS为真，则需要支持OS.
+	OSIntExit();  											 
+#endif
+}
+#endif
+
+

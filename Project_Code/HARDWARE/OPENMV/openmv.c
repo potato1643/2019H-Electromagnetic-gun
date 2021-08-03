@@ -4,7 +4,7 @@
 #include "openmv.h"
 
 static u8 Cx = 0,Cy = 0,Cw = 0,Ch = 0;
-
+u8 CX = 0, CY = 0, CW = 0, CH = 0;
 
 //USART3 全局中断服务函数
 void USART3_IRQHandler(void)			 
@@ -16,15 +16,16 @@ void USART3_IRQHandler(void)
 		static u8 RxState = 0;	
 		static u8 RxFlag1 = 0;
 
-		if( USART_GetITStatus(USART3,USART_IT_RXNE)!=RESET)  	   //接收中断  
+		if(USART_GetITStatus(USART3,USART_IT_RXNE) != RESET)  	   //接收中断  
 		{
 				USART_ClearITPendingBit(USART3,USART_IT_RXNE);   //清除中断标志
 				com_data = USART_ReceiveData(USART3);
 			
-				if(RxState==0&&com_data==0x2C)  //0x2c帧头
+				if(RxState == 0 && com_data == 0x2C)  //0x2c帧头
 				{
 					RxState=1;
-					RxBuffer3[RxCounter3++]=com_data;OLED_Refresh();
+					RxBuffer3[RxCounter3++]=com_data;
+					//OLED_Refresh();
 				}
 		
 				else if(RxState==1&&com_data==0x12)  //0x12帧头
@@ -33,7 +34,7 @@ void USART3_IRQHandler(void)
 					RxBuffer3[RxCounter3++]=com_data;
 				}
 		
-				else if(RxState==2)
+				else if(RxState == 2)
 				{
 					RxBuffer3[RxCounter3++]=com_data;
 
@@ -56,12 +57,16 @@ void USART3_IRQHandler(void)
 									USART_ITConfig(USART3,USART_IT_RXNE,DISABLE);//关闭DTSABLE中断
 									if(RxFlag1)
 									{
-                                    OLED_Clear();
-									OLED_Refresh();
-									OLED_ShowNum(0, 0,Cx,3,16,1);
-									OLED_ShowNum(0,17,Cy,3,16,1);
-									OLED_ShowNum(0,33,Cw,3,16,1);
-									OLED_ShowNum(0,49,Ch,3,16,1);
+                                    //OLED_Clear();
+									//OLED_Refresh();
+									CX = Cx;
+									CY = Cy;
+									CW=  Cw;
+									CH = Ch;
+									//OLED_ShowNum(0, 0,Cx,3,16,1);
+									//OLED_ShowNum(0,17,Cy,3,16,1);
+									//OLED_ShowNum(0,33,Cw,3,16,1);
+									//OLED_ShowNum(0,49,Ch,3,16,1);
 									}
 									RxFlag1 = 0;
 									RxCounter3 = 0;

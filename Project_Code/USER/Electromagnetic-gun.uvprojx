@@ -332,7 +332,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\USER;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\uart;..\HARDWARE\MPU6050;..\HARDWARE\MPU6050\eMPL;..\HARDWARE\OLED;..\HARDWARE\BEEP;..\HARDWARE\LED;..\HARDWARE\TIMER;..\HARDWARE\USART;..\HARDWARE\HMI;..\HARDWARE\KEY;..\HARDWARE\OPENMV</IncludePath>
+              <IncludePath>..\CORE;..\USER;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\uart;..\HARDWARE\MPU6050;..\HARDWARE\MPU6050\eMPL;..\HARDWARE\OLED;..\HARDWARE\BEEP;..\HARDWARE\LED;..\HARDWARE\TIMER;..\HARDWARE\USART;..\HARDWARE\KEY;..\HARDWARE\OPENMV</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -444,11 +444,6 @@
               <FileName>usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\USART\usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>hmi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\HMI\hmi.c</FilePath>
             </File>
             <File>
               <FileName>key.c</FileName>

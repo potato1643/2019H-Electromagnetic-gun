@@ -12,7 +12,6 @@
 "..\obj\beep.o"
 "..\obj\timer.o"
 "..\obj\usart.o"
-"..\obj\hmi.o"
 "..\obj\key.o"
 "..\obj\openmv.o"
 "..\obj\startup_stm32f10x_hd.o"
