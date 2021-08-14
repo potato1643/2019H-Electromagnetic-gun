@@ -88,7 +88,7 @@ void UART5_Configuration(void)
   	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None; //无硬件流控 
   	USART_InitStructure.USART_Mode       = USART_Mode_Rx | USART_Mode_Tx;	//收发模式 
    
-  	/* Configure USART5 */ 
+  	/* Configure UART5 */ 
   	USART_Init(UART5, &USART_InitStructure);	//配置串口参数函数  
    
 	NVIC_InitStructure.NVIC_IRQChannel = UART5_IRQn;     //UART5_IRQn;
